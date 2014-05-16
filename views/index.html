@@ -1,0 +1,44 @@
+<html ng-app="mainApp">
+<head>
+	<title>Memorize Volcabulary</title>
+	<script src="/angular/angular.js"></script>
+	<script src="/js/main.js"></script>
+	<link rel="stylesheet" type="text/css" href="/pure/pure.css">
+	<link rel="stylesheet" type="text/css" href="/css/index.css">
+	<script src="/angular-route/angular-route.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+</head>
+<body ng-controller="mainCtrl as main">
+
+
+	<div class="title">
+	<div class="log"><a href="/logout" class="pure-button logout">Logout</a></div>		
+	<h1 >Memor</h1></div>
+	<hr class="top_bar">
+	<div class="container">
+	<div class="query">
+	<center>
+	<div class="response">
+		<p>{{response.quick_def}} </p>
+	</div></center>		
+	<center>		
+	<form ng-submit="main.submit()" class="pure-form">
+		<input type="text" placeholder="Example: Hello" ng-model="request.word">
+		<button type="submit" class="pure-button submit">Submit</button>
+		<button ng-click="addToNote()" class="pure-button add">Submit</button>
+	</form></center>
+	</div>
+	<div class="view">
+	<div class="pure-menu pure-menu-open pure-menu-horizontal">
+		<ul>
+			<li><a ng-click="main.select(0)" href="#/home">Home</a></li>
+			<li><a ng-click="main.select(1)" href="#/quiz">Quiz</a></li>
+			<li><a ng-click="main.select(2)" href="#/note">Notes</a></li>
+		</ul>
+	</div>
+	<div ng-view id="content"></div></div>
+
+</div>
+</body>
+</html>

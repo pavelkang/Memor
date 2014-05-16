@@ -1,0 +1,55 @@
+* {
+	font-family: 'Roboto', sans-serif;
+}
+
+.title {
+	color :#2980b9;
+}
+
+.view {
+	border: dashed #34495e;	
+	padding-top: 20px;
+}
+
+.log {
+	position: absolute;
+	top: 30px;
+	right: 5px;
+}
+
+a {
+	cursor : pointer;
+}
+
+#content {
+	padding-left: 20px;
+	padding-top:20px;
+}
+
+.top_bar {
+	margin: 1px;
+	border : 0;
+	height:2px;
+	color : #3498db;
+	background-color: #3498db;
+}
+
+.pure-button.submit {
+	color : white;
+	background-color:#3498db;
+	border-radius : 15px;
+}
+
+.pure-button.add {
+	color: white;
+	background-color:#1abc9c;
+	border-radius : 15px;	
+}
+
+body {
+	padding : 10px;
+}
+
+.container {
+	padding-top: 20px;
+}
