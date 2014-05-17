@@ -10,8 +10,6 @@
 
 </head>
 <body ng-controller="mainCtrl as main">
-
-
 	<div class="title">
 	<div class="log"><a href="/logout" class="pure-button logout">Logout</a></div>		
 	<h1 >Memor</h1></div>
@@ -20,21 +18,21 @@
 	<div class="query">
 	<center>
 	<div class="response">
-		<p>{{response.quick_def}} </p>
+		<p>{{data.response.quick_def}}</p>
 	</div></center>		
 	<center>		
-	<form ng-submit="main.submit()" class="pure-form">
-		<input type="text" placeholder="Example: Hello" ng-model="request.word">
-		<button type="submit" class="pure-button submit">Submit</button>
-		<button ng-click="addToNote()" class="pure-button add">Submit</button>
+	<form class="pure-form">
+		<input type="text" placeholder="Example: Hello" ng-model="data.request.word">
+		<button type="submit" class="pure-button submit"   ng-click="submit()" >Submit</button>
+		<button ng-click="addToNote()" class="pure-button add">Add</button>
 	</form></center>
 	</div>
 	<div class="view">
 	<div class="pure-menu pure-menu-open pure-menu-horizontal">
 		<ul>
-			<li><a ng-click="main.select(0)" href="#/home">Home</a></li>
-			<li><a ng-click="main.select(1)" href="#/quiz">Quiz</a></li>
-			<li><a ng-click="main.select(2)" href="#/note">Notes</a></li>
+			<li class="selectHome" ng-class="{active:isSelected(0)}"><a ng-click="select(0)" href="#/home" >Home</a></li>
+			<li class="selectQuiz" ng-class="{active:isSelected(1)}"><a ng-click="select(1)" href="#/quiz" >Quiz</a></li>
+			<li class="selectNote" ng-class="{active:isSelected(2)}"><a ng-click="select(2)" href="#/note"> Notes</a></li>
 		</ul>
 	</div>
 	<div ng-view id="content"></div></div>

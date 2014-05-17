@@ -1,6 +1,7 @@
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy   = require('passport-google').Strategy;
 var User             = require('./models/user');
+var Words            = require('./models/user')
 var configAuth       = require('./auth');
 
 module.exports       = function(passport) {
@@ -33,6 +34,12 @@ module.exports       = function(passport) {
 					newUser.facebook.token = token;
 					newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
 					newUser.facebook.email = profile.emails[0].value;
+					newUser.noOfUnits = 1;
+					var newWords = new Words();
+					newWords.unit = 1;
+					newWords.eng = [];
+					newWords.esp = [];
+					newUser.words = [newWords]
 					newUser.save(function(err){
 						if (err) {throw err;}
 						return done(null, newUser);
@@ -51,17 +58,22 @@ module.exports       = function(passport) {
 		process.nextTick(function(){
 			profile.identifier = identifier;
 			console.log(profile);
-			User.findOne({'google.email' : profile.email}, function(err, user){
+			User.findOne({'google.id' : profile.identifier}, function(err, user){
 				if (err) {return done(err);}
 				if (user) {return done(null, user);}
 				else {
-					console.log(profile);
 					var newUser            = new User();
 					newUser.google.id    = profile.identifier;
 					newUser.google.name  = profile.name.givenName + ' ' + profile.name.familyName;
 					newUser.google.email = profile.email;
+					newUser.noOfUnits = 1;
+					var newWords = new Words();
+					newWords.unit = 1;
+					newWords.eng = [];
+					newWords.esp = [];
+					newUser.words = [newWords]
 					newUser.save(function(err){
-						if (err) {throw err;}
+						if (err) {throw err;console.log("ERROR!")}
 						return done(null, newUser);
 					});
 				}

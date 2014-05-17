@@ -3,6 +3,7 @@ var http = require('http');
 var router = express.Router();
 var cheerio = require('cheerio');
 var answer = "";
+var User = require('../app/models/user')
 /* GET home page. */
 module.exports = function(app, passport) {
 
@@ -12,6 +13,9 @@ module.exports = function(app, passport) {
 	app.get('/home', function(req, res) {
 		res.sendfile('views/index.html');
 	});	
+	app.get('/profile', function(req, res){
+		res.json(req.user);
+	})
 	/*
 	app.get('/home', isLoggedIn, function(req, res) {
 		res.sendfile('views/index.html');
@@ -53,6 +57,14 @@ module.exports = function(app, passport) {
 		console.log('Logging out...');
 		req.logout();
 		res.redirect('/');
+	});
+
+	app.get('/api/words', function(req, res){
+		User.find(function(err, users){
+			if (err){
+				res.send(err);}
+			res.json(users);
+		});
 	});
 };
 
