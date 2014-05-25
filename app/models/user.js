@@ -1,10 +1,5 @@
 var mongoose  = require('mongoose');
-
-var wordsSchema = mongoose.Schema({
-	unit : Number,
-	eng : Array,
-	esp : Array
-});
+var wordsSchema
 
 var userSchema = mongoose.Schema({
 	facebook : {
@@ -19,9 +14,9 @@ var userSchema = mongoose.Schema({
 		email: String,
 		name : String
 	},
-	noOfUnits : Number,
-	words    : [wordsSchema]
+	eng  : Array,
+	esp  : Array,
+	units: [{eng:Array, esp:Array}]
 });
 
-module.exports = mongoose.model('Words', wordsSchema)
 module.exports = mongoose.model('User', userSchema);

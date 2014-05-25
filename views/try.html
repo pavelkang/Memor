@@ -15,23 +15,25 @@
 	<h1 class="title">Memor</h1>
 	<hr class="top_bar">
 	<div class="container">
-	<div class="query">
+<div class="query">
 	<center>
 	<form ng-submit="main.submit()" class="pure-form">
 		<input type="text" placeholder="Example: Hello" ng-model="request.word">
 		<button type="submit" class="pure-button">Add To Notes</button>
 	</form></center>
-	<center>
-	<div class="response">
-		<p>{{response.quick_def}} </p>
-	</div></center></div>
+</div>
 	<div class="jumbotron text-center">
 		<center><h2>Log in with:</h2></center>
 		<br>
 		<a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"> Facebook</a>
 		<a href="/auth/google" class="btn btn-danger"><span class="fa fa-google"> Google</a>
-		<a href="/auth/github" class="btn btn-info"><span class="fa fa-github"> Github</a>
 	</div>
 </div>
 </body>
+<footer>
+	<hr class="bottom_bar">
+	<span>A project by <span class="name">Kai Kang</span> <br></span>
+	Translation by <span class="spanishdict">spanishdict.com</span> <br>
+	More of my projects: <span><a href="https://small-projects.herokuapp.com">small-projects.herokuapp.com</a></span> <br>
+</footer>
 </html>

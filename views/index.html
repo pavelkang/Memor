@@ -1,42 +1,65 @@
 <html ng-app="mainApp">
+
 <head>
-	<title>Memorize Volcabulary</title>
-	<script src="/angular/angular.js"></script>
-	<script src="/js/main.js"></script>
-	<link rel="stylesheet" type="text/css" href="/pure/pure.css">
-	<link rel="stylesheet" type="text/css" href="/css/index.css">
-	<script src="/angular-route/angular-route.js"></script>
-	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-
+    <title>Memor</title>
+    <script src="/angular/angular.js"></script>
+    <script src="/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="/pure/pure.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <script src="/angular-route/angular-route.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.css">
+    <script src="/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 </head>
-<body ng-controller="mainCtrl as main">
-	<div class="title">
-	<div class="log"><a href="/logout" class="pure-button logout">Logout</a></div>		
-	<h1 >Memor</h1></div>
-	<hr class="top_bar">
-	<div class="container">
-	<div class="query">
-	<center>
-	<div class="response">
-		<p>{{data.response.quick_def}}</p>
-	</div></center>		
-	<center>		
-	<form class="pure-form">
-		<input type="text" placeholder="Example: Hello" ng-model="data.request.word">
-		<button type="submit" class="pure-button submit"   ng-click="submit()" >Submit</button>
-		<button ng-click="addToNote()" class="pure-button add">Add</button>
-	</form></center>
-	</div>
-	<div class="view">
-	<div class="pure-menu pure-menu-open pure-menu-horizontal">
-		<ul>
-			<li class="selectHome" ng-class="{active:isSelected(0)}"><a ng-click="select(0)" href="#/home" >Home</a></li>
-			<li class="selectQuiz" ng-class="{active:isSelected(1)}"><a ng-click="select(1)" href="#/quiz" >Quiz</a></li>
-			<li class="selectNote" ng-class="{active:isSelected(2)}"><a ng-click="select(2)" href="#/note"> Notes</a></li>
-		</ul>
-	</div>
-	<div ng-view id="content"></div></div>
 
-</div>
+<body ng-controller="mainCtrl as main">
+    <div class="title">
+        <div class="log">
+            <span class="fa fa-user"> {{data.name}}</a>
+                <a href="/logout" class="pure-button logout">
+                    <span class="fa fa-sign-out"></span> Log out</a>
+        </div>
+        <h1>Memor</h1>
+    </div>
+    <hr class="top_bar">
+    <div class="container">
+        <div class="query">
+            <center>
+                <div class="response">
+                    <p>{{data.stored.quick_def}}</p>
+                </div>
+            </center>
+            <center>
+                <form class="pure-form">
+                    <input type="text" placeholder="Search word:" ng-model="data.request.word" class="search_input">
+                    <button type="submit" class="pure-button submit" ng-click="submit()">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button ng-click="addToNote()" class="pure-button add">
+                        <span class="fa fa-plus"></span>:</button>
+                    <select ng-model="data.stored.curr_unit" class="select_unit">
+                        <option ng-repeat="i in genTrueArray(data.units.length) track by $index" value="{{$index}}">Unit {{$index+1}}</option>
+                    </select>
+                </form>
+            </center>
+        </div>
+        <div class="view">
+            <div class="pure-menu pure-menu-open pure-menu-horizontal">
+                <ul>
+                    <li class="selectHome" ng-class="{active:isSelected(0)}"><a ng-click="select(0)" href="#/home" id="label">Home</a>
+                    </li>
+                    <li class="selectQuiz" ng-class="{active:isSelected(1)}"><a ng-click="select(1)" href="#/quiz" id="label">Quiz</a>
+                    </li>
+                    <li class="selectNote" ng-class="{active:isSelected(2)}"><a ng-click="select(2)" href="#/note" id="label"> Notes</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="rect"></div>
+            <div ng-view id="content"></div>
+        </div>
+    </div>
 </body>
+
 </html>

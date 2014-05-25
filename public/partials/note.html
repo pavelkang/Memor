@@ -1,14 +1,22 @@
-<table class="pure-table">
-	<thead>
-		<tr>
-			<th>#</th>
-			<th>Eng</th>
-			<th>Esp</th>
-		</tr>
-	</thead>
-	<tr ng-repeat="item in data.data.note_words">
-	<td>{{data.data.note_words.indexOf(item)}} </td>
-	<td>{{item[0]}} </td>
-	<td>{{item[1]}} </td></tr>
-</table>
-<button ng-click="testNote()" class="test">test</button>
+<accordion close-others="oneAtATime">
+    <accordion-group is-open="data.status.open[$index]" ng-repeat="unit in data.units">
+        <accordion-heading>
+            Unit {{$index+1}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': data.status.open[$index], 'glyphicon-chevron-right': !data.status.open[$index]}"></i>
+        </accordion-heading>
+        <table class="pure-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Eng</th>
+                    <th>Esp</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="i in genTrueArray(unit.eng.length) track by $index">
+                <td>{{$index}}</td>
+                <td>{{unit.eng[$index]}}</td>
+                <td>{{unit.esp[$index]}}</td>
+            </tr>
+        </table>
+    </accordion-group>
+</accordion>
+<button ng-click="addUnit()" class="pure-button" id="add_unit">Add Unit</button>

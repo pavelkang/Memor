@@ -1,1 +1,36 @@
-This is quiz.
+<div class="quiz_class">
+<form class="quiz" ng-show="!flag.inQuiz">
+    <ul style="padding-left:0px;margin-left:0px;">
+        <li ng-repeat="i in genFalseArray(data.units.length) track by $index" class="quiz_select">
+            <input type="checkbox" ng-model="data.selectedItems[$index]" />Unit {{$index+1}}
+        </li>
+    </ul>
+</form>
+<div class="quiz_hint" ng-show="!flag.inQuiz" style="height:30px">
+    <span>
+        <span class="fa fa-arrow-up" id="up_arrow"></span> Choose units to be tested on
+        <button ng-click="goQuiz()" class="pure-button" id="go_quiz">Go Quiz!</button>
+    </span>
+</div>
+<div class="quiz_content" ng-show="flag.inQuiz">
+    <div class="quiz_bar">
+        <center>
+            <a ng-click="goBackProb()"><span class="fa fa-angle-left problem_back"></span></a>
+            <span class="problem_eng">{{quiz.problems[quiz.index].eng}}</span>
+            <a ng-click="goForwardProb()">
+            <span class="fa fa-angle-right problem_forward"></span></a>
+        </center>
+    </div>
+
+    <center>
+        <div class="problem_esp" ng-style="espStyle">{{quiz.problems[quiz.index].esp}}</div>
+    </center>
+
+    <span class="quiz_control">
+    	{{quiz.index+1}} of {{quiz.problems.length}}
+        <button ng-click="show()" class="pure-button show"> <span class= "fa fa-eye"> Solution</span></button>
+        <button ng-click="goBack()" class="pure-button giveup">
+            <span class="fa fa-flag"></span> Give Up</button>
+    </span>
+</div>
+</div>
